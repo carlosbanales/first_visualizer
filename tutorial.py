@@ -10,6 +10,12 @@ class DrawInformation:
     GREY = 128, 128, 128
     BACKGROUND_COLOR = WHITE
 
+    GRADIENTS = [
+        (128, 128, 128),
+        (160, 160, 160),
+        (192, 192, 192)
+    ]
+
     SIDE_PAD = 100
     TOP_PAD = 150
 
@@ -29,6 +35,13 @@ class DrawInformation:
         self.block_width = round(self.width - self.SIDE_PAD) / len(lst)
         self.block_height = round((self.height - self.TOP_PAD) / (self.max_val - self.min_val))
         self.start_x = self.SIDE_PAD // 2
+
+def draw(draw_info):
+    draw_info.window.fill(draw_info.BACKGROUND_COLOR)
+    pygame.display.update()
+
+def draw_list(draw_info):
+    pass
 
 def generate_starting_list(n, min_val, max_val):
         lst = []
@@ -53,9 +66,10 @@ def main():
 
     while run:
         clock.tick(60)
+        draw(draw_info)
 
         for event in pygame.event.get():
-            if event == pygame.QUIT:
+            if event.type == pygame.QUIT:
                 run = False
     
     pygame.quit()
